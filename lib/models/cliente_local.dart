@@ -1,29 +1,29 @@
-import 'package:tienda_02/models/limpieza.dart';
+import 'package:tienda_02/models/cliente.dart';
 
-class LimpiezaLocal {
-  static List<Limpieza> listaLimpieza = [
-    //Limpieza(id: 2, cliente: 'DETERGENTE', cantidad: '1'),
-    //Limpieza(id: 1, cliente: 'JABÓN', cantidad: '2')
+class ClienteLocal {
+  static List<Cliente> listaCliente = [
+    //Cliente(id: 2, producto: 'DETERGENTE', cantidad: '1'),
+    //Cliente(id: 1, producto: 'JABÓN', cantidad: '2')
   ];
 
-  void agregarLimpiezaItem(Limpieza limpieza) {
-    listaLimpieza.insert(0, limpieza);
+  void agregarClienteItem(Cliente cliente) {
+    listaCliente.insert(0, cliente);
   }
 
-  void editarLimpiezaItem(Limpieza limpieza) {
+  void editarClienteItem(Cliente cliente) {
     //BUSCAR PEDIDO Y ACTUALIZAR
-    for (var i = 0; i < listaLimpieza.length; i++) {
-      if (listaLimpieza[i].id == limpieza.id) {
-        listaLimpieza[i] = limpieza;
+    for (var i = 0; i < listaCliente.length; i++) {
+      if (listaCliente[i].id == cliente.id) {
+        listaCliente[i] = cliente;
       }
     }
   }
 
-  void eliminarLimpiezaItem(int index) {
-    listaLimpieza.removeAt(index);
+  void eliminarClienteItem(int index) {
+    listaCliente.removeAt(index);
   }
 
-  int obtenerCantidadLimpieza() {
-    return listaLimpieza.length;
+  int obtenerCantidadCliente() {
+    return listaCliente.length;
   }
 }
