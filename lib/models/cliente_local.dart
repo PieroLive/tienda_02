@@ -27,4 +27,3 @@ class ClienteLocal {
     return listaCliente.length;
   }
 }
-
