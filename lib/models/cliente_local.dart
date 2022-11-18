@@ -2,8 +2,8 @@ import 'package:tienda_02/models/limpieza.dart';
 
 class LimpiezaLocal {
   static List<Limpieza> listaLimpieza = [
-    //Limpieza(id: 2, producto: 'DETERGENTE', cantidad: '1'),
-    //Limpieza(id: 1, producto: 'JABÓN', cantidad: '2')
+    //Limpieza(id: 2, cliente: 'DETERGENTE', cantidad: '1'),
+    //Limpieza(id: 1, cliente: 'JABÓN', cantidad: '2')
   ];
 
   void agregarLimpiezaItem(Limpieza limpieza) {
