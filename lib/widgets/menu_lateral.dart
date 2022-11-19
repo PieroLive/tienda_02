@@ -53,9 +53,9 @@ class MenuLateral extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.shop),
-            title: Text('Limpieza'),
+            title: Text('clientes'),
             onTap: (() {
-              Navigator.pushNamed(context, 'limpieza');
+              Navigator.pushNamed(context, 'clientes');
             }),
           ),
           ListTile(

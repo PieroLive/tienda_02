@@ -1,57 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tienda_02/models/productos_local.dart';
-import 'package:tienda_02/providers/productos_provider.dart';
+import 'package:tienda_02/models/clientes_local.dart';
+import 'package:tienda_02/providers/clientes_provider.dart';
 
-import '../models/productos.dart';
+import '../models/clientes.dart';
 
-class ProductosFormScreen extends StatefulWidget {
-  const ProductosFormScreen({super.key});
+class ClientesFormScreen extends StatefulWidget {
+  const ClientesFormScreen({super.key});
 
   @override
-  State<ProductosFormScreen> createState() => _ProductosFormScreenState();
+  State<ClientesFormScreen> createState() => _ClientesFormScreenState();
 }
 
-enum Categoria { Dulces, Salados }
+enum Tipo { Vip, Normal }
 
-class _ProductosFormScreenState extends State<ProductosFormScreen> {
+class _ClientesFormScreenState extends State<ClientesFormScreen> {
   final _formKey = GlobalKey<FormState>();
   final txtId = TextEditingController();
   final txtProducto = TextEditingController();
   final txtCantidad = TextEditingController();
   final txtFecha = TextEditingController();
   final txtImagen = TextEditingController();
-  Categoria? _catSeleccion = Categoria.Dulces;
+  Tipo? _catSeleccion = Tipo.Dulces;
   bool? _estadoActivado = false;
   bool formModificado = false;
 
   @override
   Widget build(BuildContext context) {
 //OBTENIENDO
-    final Productos? productos =
-        ModalRoute.of(context)!.settings.arguments as Productos?;
+    final Clientes? clientes =
+        ModalRoute.of(context)!.settings.arguments as Clientes?;
     if (!formModificado) {
-      if (productos != null) {
+      if (clientes != null) {
         //EDITAR
-        txtId.text = productos.productosId.toString();
-        txtProducto.text = productos.producto;
-        txtCantidad.text = productos.cantidad;
-        txtFecha.text = productos.fecha;
-        txtImagen.text = productos.imagen;
-        if (productos.tipo == 'Tipo.Cliente') {
-          _catSeleccion = Tipo.Premium;
+        txtId.text = clientes.clientesId.toString();
+        txtProducto.text = clientes.producto;
+        txtCantidad.text = clientes.cantidad;
+        txtFecha.text = clientes.fecha;
+        txtImagen.text = clientes.imagen;
+        if (clientes.tipo == 'Tipo.Cliente') {
+          _catSeleccion = Tipo.Vip;
         } else {
           _catSeleccion = Tipo.Normal;
         }
 
-        _estadoActivado = (productos.estado == 'true') ? true : false;
+        _estadoActivado = (clientes.estado == 'true') ? true : false;
       } else {
         //NUEVO
         txtId.text = '0';
       }
     }
 
-    final productosProvider = Provider.of<ProductosProvider>(context);
+    final clientesProvider = Provider.of<ClientesProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('INGRESE EL PEDIDO'),
@@ -135,32 +135,32 @@ class _ProductosFormScreenState extends State<ProductosFormScreen> {
               ),
               Row(
                 children: <Widget>[
-                  Text('CATEGORIA'),
+                  Text('TIPO'),
                   SizedBox(width: 20),
                   Radio(
-                      value: Categoria.Dulces,
+                      value: Tipo.Dulces,
                       groupValue: _catSeleccion,
                       onChanged: (value) {
                         setState(() {
-                          _catSeleccion = value as Categoria?;
+                          _catSeleccion = value as Tipo?;
                           print(_catSeleccion);
                           formModificado = true;
                         });
                       }),
-                  Text('DULCES'),
+                  Text('VIP'),
                   SizedBox(width: 20),
                   Radio(
-                    value: Categoria.Salados,
+                    value: Tipo.Salados,
                     groupValue: _catSeleccion,
                     onChanged: (value) {
                       setState(() {
-                        _catSeleccion = value as Categoria?;
+                        _catSeleccion = value as Tipo?;
                         print(_catSeleccion);
                         formModificado = true;
                       });
                     },
                   ),
-                  Text('SALADOS'),
+                  Text('NOMRAL'),
                 ],
               ),
               SizedBox(height: 20),
@@ -189,18 +189,18 @@ class _ProductosFormScreenState extends State<ProductosFormScreen> {
                   if (_formKey.currentState!.validate()) {
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Guardando')));
-                    var productos = Productos(
+                    var clientes = Clientes(
                         id: '',
-                        productosId: int.parse(txtId.text),
+                        clientesId: int.parse(txtId.text),
                         producto: txtProducto.text,
                         cantidad: txtCantidad.text,
                         fecha: txtFecha.text,
                         imagen: txtImagen.text,
-                        categoria: _catSeleccion.toString(),
+                        tipo: _catSeleccion.toString(),
                         estado: _estadoActivado.toString());
-                    productosProvider.postsaveProductos(productos);
+                    clientesProvider.postsaveClientes(clientes);
 
-                    Navigator.pushReplacementNamed(context, 'productos');
+                    Navigator.pushReplacementNamed(context, 'clientes');
                   }
                 },
               )
