@@ -38,7 +38,7 @@ class _ClientesFormScreenState extends State<ClientesFormScreen> {
         txtCantidad.text = clientes.cantidad;
         txtFecha.text = clientes.fecha;
         txtImagen.text = clientes.imagen;
-        if (clientes.tipo == 'Tipo.Cliente') {
+        if (clientes.tipo == 'Tipo.Clientes') {
           _catSeleccion = Tipo.Vip;
         } else {
           _catSeleccion = Tipo.Normal;

@@ -1,29 +1,29 @@
-import 'package:tienda_02/models/cliente.dart';
+import 'package:tienda_02/models/clientes.dart';
 
-class ClienteLocal {
-  static List<Cliente> listaCliente = [
-    //Cliente(id: 2, producto: 'DETERGENTE', cantidad: '1'),
-    //Cliente(id: 1, producto: 'JABÓN', cantidad: '2')
+class ClientesLocal {
+  static List<Clientes> listaClientes = [
+    //Clientes(id: 2, producto: 'DETERGENTE', cantidad: '1'),
+    //Clientes(id: 1, producto: 'JABÓN', cantidad: '2')
   ];
 
-  void agregarClienteItem(Cliente cliente) {
-    listaCliente.insert(0, cliente);
+  void agregarClienteItem(Clientes clientes) {
+    listaClientes.insert(0, clientes);
   }
 
-  void editarClienteItem(Cliente cliente) {
+  void editarClientesItem(Clientes clientes) {
     //BUSCAR PEDIDO Y ACTUALIZAR
-    for (var i = 0; i < listaCliente.length; i++) {
-      if (listaCliente[i].id == cliente.id) {
-        listaCliente[i] = cliente;
+    for (var i = 0; i < listaClientes.length; i++) {
+      if (listaClientes[i].id == clientes.id) {
+        listaClientes[i] = clientes;
       }
     }
   }
 
-  void eliminarClienteItem(int index) {
-    listaCliente.removeAt(index);
+  void eliminarClientesItem(int index) {
+    listaClientes.removeAt(index);
   }
 
-  int obtenerCantidadCliente() {
-    return listaCliente.length;
+  int obtenerCantidadClientes() {
+    return listaClientes.length;
   }
 }

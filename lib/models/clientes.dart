@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-class cliente {
-  clientes({
+class Clientes {
+  Clientes({
     required this.id,
     required this.clientesId,
     required this.nombre,
@@ -21,7 +21,7 @@ class cliente {
   String tipo;
   String estado;
 
-  factory clientes.fromJson(String str) => Clientes.fromMap(json.decode(str));
+  factory Clientes.fromJson(String str) => Clientes.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
